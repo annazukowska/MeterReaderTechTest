@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>File Upload Client</title>
+</head>
+<body>
+    <h2>Upload File to API</h2>
+
+    <input type="file" id="fileInput" />
+    <button id="uploadBtn">Upload</button>
+
+    <h3>Response:</h3>
+    <pre id="result"></pre>
+
+    <script>
+    const fileInput = document.getElementById('fileInput');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const result = document.getElementById('result');
+
+    uploadBtn.addEventListener('click', () => {
+      const files = fileInput.files;
+      if (files.length === 0) {
+        alert('Please select a file first');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', files[0]);
+
+      fetch('https://localhost:51082/meter-reading-uploads', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Error ${response.status}: ${errorText}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        result.textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        result.textContent = error.message;
+      });
+    });
+    </script>
+</body>
+</html>

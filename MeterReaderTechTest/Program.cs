@@ -9,6 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+});
+
 builder.Services.AddScoped<MeterReadingService>();
 builder.Services.AddScoped<CsvSeeder>();
 builder.Services.AddAutoMapper(typeof(Program));
@@ -21,6 +29,10 @@ using (var scope = app.Services.CreateScope())
     var path = Path.Combine(AppContext.BaseDirectory, "Resources", "Test_Accounts.csv");
     seeder.SeedAccounts(path);
 }
+
+app.UseCors();
+
+app.UseRouting();
 
 app.MapGet("/", () => "Hello, Meter Reader API!");
 
