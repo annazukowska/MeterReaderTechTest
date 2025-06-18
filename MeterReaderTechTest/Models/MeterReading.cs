@@ -10,7 +10,7 @@ namespace MeterReaderTechTest.Models
         public int Id { get; set; }
         public int AccountId { get; set; }
         public DateTime ReadingDateTime { get; set; }
-        public string ReadingValue { get; set; }
+        public string ReadValue { get; set; }
         public Account Account { get; set; }
 
     }

@@ -33,7 +33,7 @@ namespace MeterReaderTechTest.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     ReadingDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReadingValue = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ReadValue = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

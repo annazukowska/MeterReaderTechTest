@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeterReaderTechTest.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250617122806_InitialCreate")]
+    [Migration("20250617202202_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -57,12 +57,12 @@ namespace MeterReaderTechTest.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReadingDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReadingValue")
+                    b.Property<string>("ReadValue")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReadingDateTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

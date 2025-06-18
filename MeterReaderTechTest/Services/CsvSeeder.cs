@@ -43,8 +43,7 @@ public class CsvSeeder
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error seeding accounts: {ex.Message}");
-            //throw;
+            throw new Exception($"Error seeding accounts: {ex.Message}");
         }
     }
 }

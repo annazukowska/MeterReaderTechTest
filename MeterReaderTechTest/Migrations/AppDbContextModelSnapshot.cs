@@ -54,12 +54,12 @@ namespace MeterReaderTechTest.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReadingDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReadingValue")
+                    b.Property<string>("ReadValue")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReadingDateTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
